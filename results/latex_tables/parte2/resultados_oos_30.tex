@@ -1,0 +1,20 @@
+\begin{table}
+\caption{Resultados Out-of-Sample (División 30-70)}
+\label{tab:oos_30}
+\begin{tabular}{llllrrrrrr}
+\toprule
+commodity & tipo_cambio & ventana & modelo & ECM & R2_OOS_vs_AR1 & DM_stat_vs_AR1 & DM_pvalue_vs_AR1 & diferencia_significativa_5pct & supera_AR1_en_ECM \\
+\midrule
+copper & chile & recursive & PH_dos_rezagos & 0.0064 & -0.0077 & 0.2792 & 0.7801 & False & False \\
+copper & chile & recursive & AR1 & 0.0064 & 0.0000 & NaN & NaN & False & False \\
+copper & chile & recursive & promedio_historico & 0.0064 & -0.0087 & 0.1615 & 0.8717 & False & False \\
+copper & chile & recursive & zero_forecast & 0.0063 & 0.0066 & -0.1369 & 0.8911 & False & True \\
+copper & chile & rolling & PH_dos_rezagos & 0.0065 & -0.0126 & 0.4521 & 0.6512 & False & False \\
+copper & chile & rolling & AR1 & 0.0065 & 0.0000 & NaN & NaN & False & False \\
+copper & chile & rolling & promedio_historico & 0.0065 & -0.0053 & 0.0785 & 0.9374 & False & False \\
+copper & chile & rolling & zero_forecast & 0.0063 & 0.0184 & -0.3084 & 0.7578 & False & True \\
+copper & australia & recursive & PH_dos_rezagos & 0.0066 & -0.0417 & 1.1512 & 0.2496 & False & False \\
+copper & australia & recursive & AR1 & 0.0064 & 0.0000 & NaN & NaN & False & False \\
+\bottomrule
+\end{tabular}
+\end{table}
