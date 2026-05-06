@@ -1,0 +1,20 @@
+\begin{table}
+\caption{Resultados de Mean Directional Accuracy (MDA)}
+\label{tab:mda}
+\begin{tabular}{llllrrrr}
+\toprule
+commodity & tipo_cambio & ventana & modelo & MDA & stat_vs_50pct & pvalue_unilateral & supera_pure_luck_5pct \\
+\midrule
+copper & chile & recursive & PH_dos_rezagos & 0.4597 & -0.8265 & 0.7957 & False \\
+copper & chile & recursive & AR1 & 0.4194 & -1.7717 & 0.9618 & False \\
+copper & chile & recursive & promedio_historico & 0.5081 & 0.1963 & 0.4222 & False \\
+copper & chile & recursive & zero_forecast & 0.0000 & NaN & NaN & False \\
+copper & chile & rolling & PH_dos_rezagos & 0.4677 & -0.6968 & 0.7570 & False \\
+copper & chile & rolling & AR1 & 0.4597 & -0.9107 & 0.8188 & False \\
+copper & chile & rolling & promedio_historico & 0.5000 & 0.0000 & 0.5000 & False \\
+copper & chile & rolling & zero_forecast & 0.0000 & NaN & NaN & False \\
+copper & australia & recursive & PH_dos_rezagos & 0.4194 & -1.7342 & 0.9586 & False \\
+copper & australia & recursive & AR1 & 0.4194 & -1.7717 & 0.9618 & False \\
+\bottomrule
+\end{tabular}
+\end{table}

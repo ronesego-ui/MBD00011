@@ -1,0 +1,20 @@
+\begin{table}
+\caption{Bonus 2: Paradoja del ECM y Test de Correlaciones}
+\label{tab:bonus2_paradoja}
+\begin{tabular}{lllllrrrrrrrrrr}
+\toprule
+commodity & tipo_cambio & ventana & modelo & benchmark & ECM_modelo & ECM_AR1 & modelo_peor_ECM_que_AR1 & corr_modelo & corr_AR1 & modelo_mayor_corr_que_AR1 & paradoja_MSPE & diff_corr_modelo_menos_AR1 & pvalue_bootstrap_corr & diff_corr_significativa_5pct \\
+\midrule
+copper & chile & recursive & PH_dos_rezagos & AR1 & 0.0043 & 0.0042 & True & -0.0798 & -0.1475 & True & True & 0.0677 & 0.2953 & False \\
+copper & chile & recursive & promedio_historico & AR1 & 0.0037 & 0.0042 & False & -0.0826 & -0.1475 & True & False & 0.0649 & 0.3554 & False \\
+copper & chile & recursive & zero_forecast & AR1 & 0.0036 & 0.0042 & False & NaN & -0.1475 & False & False & NaN & NaN & False \\
+copper & chile & rolling & PH_dos_rezagos & AR1 & 0.0044 & 0.0043 & True & -0.1127 & -0.1696 & True & True & 0.0569 & 0.3724 & False \\
+copper & chile & rolling & promedio_historico & AR1 & 0.0038 & 0.0043 & False & -0.1132 & -0.1696 & True & False & 0.0564 & 0.3233 & False \\
+copper & chile & rolling & zero_forecast & AR1 & 0.0036 & 0.0043 & False & NaN & -0.1696 & False & False & NaN & NaN & False \\
+copper & australia & recursive & PH_dos_rezagos & AR1 & 0.0042 & 0.0042 & True & -0.1194 & -0.1475 & True & True & 0.0281 & 0.3834 & False \\
+copper & australia & recursive & promedio_historico & AR1 & 0.0037 & 0.0042 & False & -0.0826 & -0.1475 & True & False & 0.0649 & 0.3554 & False \\
+copper & australia & recursive & zero_forecast & AR1 & 0.0036 & 0.0042 & False & NaN & -0.1475 & False & False & NaN & NaN & False \\
+copper & australia & rolling & PH_dos_rezagos & AR1 & 0.0043 & 0.0043 & True & -0.1560 & -0.1696 & True & True & 0.0135 & 0.6537 & False \\
+\bottomrule
+\end{tabular}
+\end{table}

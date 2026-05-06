@@ -1,0 +1,20 @@
+\begin{table}
+\caption{Significancia de parámetros de modelos ARIMA}
+\label{tab:significancia_arima}
+\begin{tabular}{llrrr}
+\toprule
+modelo & parametro & coeficiente & p_value & significativo_5pct \\
+\midrule
+ARIMA(1,1,0) & ar.L1 & 0.6793 & 0.0000 & True \\
+ARIMA(1,1,0) & sigma2 & 0.0000 & 0.0000 & True \\
+ARIMA(0,1,1) & ma.L1 & 0.5172 & 0.0000 & True \\
+ARIMA(0,1,1) & sigma2 & 0.0001 & 0.0000 & True \\
+ARIMA(1,1,1) & ar.L1 & 0.8739 & 0.0000 & True \\
+ARIMA(1,1,1) & ma.L1 & -0.3565 & 0.0183 & True \\
+ARIMA(1,1,1) & sigma2 & 0.0000 & 0.0000 & True \\
+ARIMA(2,1,1) & ar.L1 & 0.2593 & 0.8201 & False \\
+ARIMA(2,1,1) & ar.L2 & 0.3488 & 0.6576 & False \\
+ARIMA(2,1,1) & ma.L1 & 0.3934 & 0.7372 & False \\
+\bottomrule
+\end{tabular}
+\end{table}

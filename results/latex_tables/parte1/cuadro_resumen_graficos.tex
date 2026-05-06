@@ -1,0 +1,13 @@
+\begin{table}
+\caption{Resumen del Comportamiento Gráfico Esperado}
+\label{tab:resumen_graficos}
+\begin{tabular}{llllll}
+\toprule
+Escenario & Tipo de proceso & Relación real entre Y y X & Comportamiento gráfico esperado & Interpretación & Riesgo de regresión espuria \\
+\midrule
+i) AR(1) estacionario & Estacionario & No existe relación real & Nube de puntos dispersa, sin patrón fuerte & La significancia debería estar cerca del nivel nominal & Bajo \\
+ii) AR(1) altamente persistente & Estacionario, pero muy persistente & No existe relación real & Puede aparecer una relación visual artificial & La persistencia aumenta el riesgo de falsos positivos & Medio/Alto \\
+iii) Random Walk & No estacionario / raíz unitaria & No existe relación real & Puede aparecer una relación visual espuria & La no estacionariedad puede generar regresión espuria & Muy alto \\
+\bottomrule
+\end{tabular}
+\end{table}
