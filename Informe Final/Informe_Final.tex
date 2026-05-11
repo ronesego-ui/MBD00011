@@ -1,114 +1,83 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[11pt,letterpaper]{article}
 
-% Paquetes esenciales
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
-\usepackage[margin=2.5cm]{geometry}
-\usepackage{graphicx}
-\usepackage{fancyhdr}
-\usepackage{float}
-\usepackage{amsmath}
+\usepackage{geometry}
 \usepackage{booktabs}
-\usepackage{hyperref}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{graphicx}
 \usepackage{xcolor}
-\usepackage{caption}
-\usepackage{subcaption}
+\usepackage{float}
+\usepackage{hyperref}
 \usepackage{titlesec}
-\usepackage{multirow}
-\renewcommand{\familydefault}{\sfdefault} % sans serif
-\usepackage{helvet}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish]{babel}
 
-% Configuración de colores
-\definecolor{azuloscuro}{RGB}{0,51,102}
-\definecolor{grisclaro}{RGB}{240,240,240}
-\definecolor{rojochurn}{RGB}{220,53,69}
-\definecolor{verdeok}{RGB}{40,167,69}
+\geometry{top=2.35cm,bottom=2.15cm,left=2.15cm,right=2.15cm,headheight=32pt}
+\setlength{\parskip}{0.45em}
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\captionsetup{font=small,labelfont=bf}
+\hypersetup{colorlinks=true, linkcolor=black, urlcolor=black}
 
-% Configuración de hipervínculos
-\hypersetup{
-	colorlinks=true,
-	linkcolor=azuloscuro,
-	filecolor=magenta,      
-	urlcolor=cyan,
-	citecolor=azuloscuro,
-}
+\definecolor{udpblue}{RGB}{0,70,125}
+\titleformat{\section}{\large\bfseries\color{udpblue}}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{udpblue}}{\thesubsection}{0.6em}{}
 
-% Configuración de títulos de sección
-\titleformat{\section}
-{\normalfont\Large\bfseries\color{azuloscuro}}{\thesection}{1em}{}
-\titleformat{\subsection}
-{\normalfont\large\bfseries\color{azuloscuro}}{\thesubsection}{1em}{}
-
-% Configuración del encabezado y pie de página
 \pagestyle{fancy}
 \fancyhf{}
-
-\fancyhead[L]{\includegraphics[width=4cm]{logo1.png}}
-\fancyhead[R]{\includegraphics[width=4cm]{logo2.png}}
-
-\fancyfoot[C]{\thepage}
-
-\setlength{\headheight}{40pt}
-\renewcommand{\headrulewidth}{0.9pt}
-\renewcommand{\footrulewidth}{0.9pt}
-
-% Portada sin encabezados
-\fancypagestyle{plain}{
-	\fancyhf{}
-	\renewcommand{\headrulewidth}{0pt}
-	\fancyfoot[C]{\thepage}
-}
+\lhead{\includegraphics[height=0.55cm]{logo1.png}}
+\rhead{MBD0011 - Análisis Predictivo en Finanzas}
+\cfoot{\thepage}
 
 \begin{document}
-	% ==================== PORTADA ====================
-	\begin{titlepage}
-		\centering
-		\vspace*{1cm}
-		\includegraphics[width=2.5cm]{logo1.png}
-		\hfill
-		\includegraphics[width=2.5cm]{logo2.png}		
-		\vspace{2cm}
-		
-		{\Huge\bfseries\color{azuloscuro} Reporte Ejecutivo\par}
-		\vspace{0.5cm}
-		{\LARGE\textbf {Análisis Predictivo en Finanzas}\par}
-		{\Large\textbf{MBD00011 - Magíster en Business Analytics}\par}
-		
-		
-		
-		\vfill
-		
-		{\large Daniel Avello - Felipe Valdivia - Roberto Sepúlveda\par}
-		\vspace{0.3cm}
-		{\large \today\par}
-		
-	\end{titlepage}
 
+\begin{titlepage}
+    \centering
+    \vspace*{1.0cm}
+    \includegraphics[width=0.72\textwidth]{logo2.png}\\[2.0cm]
+    {\Large\bfseries Reporte ejecutivo\\[0.25cm]}
+    {\Large Análisis Predictivo en Finanzas\\[0.45cm]}
+    {\large MBD0011 - Magíster en Business Analytics\\[1.0cm]}
+    \rule{0.78\textwidth}{0.4pt}\\[0.75cm]
+    {\large Daniel Avello - Felipe Valdivia - Roberto Sepúlveda\\[0.25cm]}
+    {\large 10 de mayo de 2026}
+    \vfill
+\end{titlepage}
 
 \section*{Resumen}
 
-Este informe presenta los resultados del examen de Análisis Predictivo en Finanzas. El trabajo se organizó en tres bloques: simulaciones para estudiar regresión espuria, ejercicios de predictibilidad con \textit{commodity currencies}, y una aplicación de Box-Jenkins al GDP de Reino Unido.
+Este informe presenta los resultados del examen de Análisis Predictivo en Finanzas. El trabajo se organizó en tres partes: simulaciones para estudiar regresión espuria, ejercicios de predictibilidad con \textit{commodity currencies} y una aplicación de Box-Jenkins al GDP de Reino Unido.
 
-En la Parte 1 se simularon series independientes bajo distintos niveles de persistencia. El punto central fue revisar qué ocurre cuando se estima una regresión entre variables que, por construcción, no tienen relación. En el caso estacionario los falsos rechazos fueron acotados, aunque no nulos; con alta persistencia aumentaron; y con caminatas aleatorias la inferencia usual rechazó en las diez regresiones. HAC redujo parte del problema, pero no lo eliminó cuando las series tenían raíz unitaria.
+En la Parte 1 se generaron series independientes bajo distintos niveles de persistencia. La idea fue revisar qué pasa cuando se estima una regresión entre variables que, por construcción, no tienen relación. En el caso estacionario los falsos rechazos fueron acotados, aunque no desaparecieron; con alta persistencia aumentaron; y con caminatas aleatorias la inferencia usual rechazó en las diez regresiones. HAC ayudó a reducir parte del problema, pero no corrigió el efecto de trabajar con series con raíz unitaria.
 
-En la Parte 2 se evaluó la hipótesis de \textit{commodity currencies}. La evidencia dentro de muestra fue favorable en algunos casos, especialmente en aluminio y en especificaciones que incorporan el peso chileno. Sin embargo, al pasar a ejercicios fuera de muestra, los modelos con tipo de cambio no dominaron de forma sistemática al AR(1) ni a otros benchmarks simples. La evaluación económica mediante MDA, trading y portafolio tampoco mostró ganancias robustas. Por eso, la conclusión de esta parte es prudente: existe señal predictiva en casos específicos, pero no es estable ni fácil de explotar.
+En la Parte 2 se evaluó la hipótesis de \textit{commodity currencies}. La evidencia dentro de muestra fue favorable en algunos casos, especialmente en aluminio y en especificaciones que incorporan el peso chileno. Sin embargo, al pasar a ejercicios fuera de muestra, los modelos con tipo de cambio no dominaron de forma estable al AR(1) ni a otros benchmarks simples. La evaluación económica mediante MDA, trading y portafolio tampoco mostró ganancias robustas. Por eso, la conclusión de esta parte es prudente: hay señales predictivas en casos específicos, pero no son fáciles de explotar de manera sistemática.
 
 En la Parte 3 se aplicó la metodología Box-Jenkins. El GDP en nivel no rechazó raíz unitaria, mientras que la primera diferencia logarítmica sí presentó un comportamiento estacionario. Entre los modelos evaluados, el ARIMA(1,1,1) fue seleccionado por criterios de información, significancia de parámetros y diagnóstico de residuos.
 
-La lectura general es que el análisis predictivo en finanzas exige más que encontrar coeficientes significativos. Antes de afirmar que un modelo predice, es necesario revisar estacionariedad, comparar contra benchmarks simples, evaluar fuera de muestra y verificar si la señal tiene alguna utilidad económica.
+La lectura general es que no basta con encontrar coeficientes significativos. Antes de afirmar que un modelo predice, hay que revisar estacionariedad, comparar contra benchmarks simples, evaluar fuera de muestra y preguntarse si la señal tiene utilidad económica.
 
 \newpage
 
 \section{Introducción}
 
-El examen se puede leer como una revisión aplicada de varios problemas que aparecen al trabajar con series financieras. No basta con estimar una regresión y mirar si el p-value es bajo. Antes de interpretar un resultado predictivo, hay que revisar si las series son estacionarias, si la relación se mantiene fuera de muestra y si el modelo supera a alternativas simples.
+El examen trabaja con un problema bastante práctico: en series financieras es fácil encontrar relaciones que parecen predictivas, pero que después no se sostienen al revisar mejor los datos. Por eso, el informe no se centra solo en reportar regresiones, sino en revisar qué tan confiables son esas relaciones cuando se consideran estacionariedad, errores robustos, evaluación fuera de muestra y valor económico.
 
-Bajo esa lógica, el informe se divide en tres partes. La primera usa simulaciones para mostrar cómo aparecen relaciones espurias cuando las series son persistentes o tienen raíz unitaria. La segunda evalúa la hipótesis de \textit{commodity currencies}, es decir, si algunos tipos de cambio contienen información útil para anticipar retornos de commodities. La tercera aplica la metodología Box-Jenkins para modelar el GDP de Reino Unido.
+Bajo esa lógica, el informe se divide en tres partes. La primera usa simulaciones para mostrar cómo aparecen relaciones espurias cuando las series son persistentes o tienen raíz unitaria. La segunda evalúa si algunos tipos de cambio contienen información útil para anticipar retornos de commodities. La tercera aplica la metodología Box-Jenkins para modelar el GDP de Reino Unido.
 
-La idea no es forzar una conclusión optimista sobre predictibilidad. De hecho, varios resultados muestran que la evidencia se debilita cuando se exige validación fuera de muestra o valor económico. Por eso, el informe presenta tanto los resultados favorables como los casos donde los modelos no logran superar benchmarks simples.
+La idea no es forzar una conclusión optimista sobre predictibilidad. De hecho, varios resultados muestran que la evidencia se debilita cuando se exige validación fuera de muestra o cuando se evalúa si la señal sirve para tomar decisiones económicas. Por eso se presentan tanto los resultados favorables como los casos donde los modelos no logran superar benchmarks simples.
 
 \newpage
-\section{Simulaciones y regresión espuria}
+\section{Simulaciones y Regresión Espuria}
 
 \subsection{Diseño del ejercicio}
 
@@ -118,9 +87,9 @@ Se generaron veinte procesos independientes en cada escenario. Los diez primeros
 Y_{i,t}=c+kX_{i,t}+u_{i,t}, \quad i=1,\dots,10.
 \end{equation}
 
-Como las variables $X_i$ e $Y_i$ fueron generadas de forma independiente, el valor teórico del parámetro $k$ es cero. Por lo tanto, cualquier rechazo de $H_0:k=0$ corresponde a un falso rechazo. La comparación se hizo usando errores estándar usuales y errores estándar HAC.
+Como las variables $X_i$ e $Y_i$ fueron generadas de forma independiente, el valor teórico de $k$ es cero. Por lo tanto, cada rechazo de $H_0:k=0$ corresponde a un falso rechazo. La comparación se hizo usando errores estándar usuales y errores estándar HAC.
 
-Se revisaron tres escenarios: AR(1) estacionario con $b=0.6$, AR(1) altamente persistente con $b=0.97$ y caminata aleatoria con $b=1$. El interés no está solo en cada regresión individual, sino en cómo cambia la frecuencia de rechazos a medida que aumenta la persistencia.
+Se revisaron tres escenarios: AR(1) estacionario con $b=0.6$, AR(1) altamente persistente con $b=0.97$ y caminata aleatoria con $b=1$. El interés no está solo en cada regresión individual, sino en ver cómo cambia la frecuencia de rechazos cuando aumenta la persistencia.
 
 \subsection{Resultados por escenario}
 
@@ -146,7 +115,17 @@ Y10 $\sim$ X10 & -0.1091 & 0.0007 & Sí & 0.0034 & Sí & 0.0115 \\
 \end{tabular}
 \end{table}
 
-En el caso estacionario, la inferencia usual rechaza 4 de 10 veces y HAC rechaza 2 de 10. La proporción usual es alta para un ejercicio al 10\%, pero debe leerse con cuidado porque el número de regresiones es pequeño. Lo importante es que los $R^2$ son muy bajos y no aparece una relación económica real entre las series.
+En el caso estacionario, la inferencia usual rechaza 4 de 10 veces y HAC rechaza 2 de 10. El porcentaje usual es alto para un ejercicio al 10\%, pero hay que leerlo con cuidado porque el número de regresiones es pequeño. Lo importante es que los $R^2$ son muy bajos y no aparece una relación económica real entre las series.
+
+Como complemento, se repitió el experimento muchas veces para que la conclusión no dependa solo de una corrida puntual de diez regresiones. La Figura 1 resume esa repetición. En el caso con $b=0.6$, OLS suele rechazar más que el 10\% nominal: la mayor parte de las simulaciones queda entre 20\% y 40\% de rechazos. Con HAC, la distribución se mueve hacia valores más bajos y queda más cerca del nivel esperado, aunque todavía hay variación entre corridas. Esto confirma que el primer resultado de la tabla debe interpretarse con cautela: el problema existe, pero es bastante menos severo que en los escenarios más persistentes.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.80\textwidth]{sim_b_medio.png}
+\caption{Distribución de rechazos en simulaciones repetidas, $b=0.6$}
+\end{figure}
+
+La lectura general de esta primera simulación es que, aun trabajando con procesos estacionarios, la dependencia temporal puede afectar la inferencia si se usan errores estándar usuales. HAC mejora el comportamiento de los rechazos, pero no debe leerse como una solución automática para cualquier especificación.
 
 \begin{table}[H]
 \centering
@@ -170,7 +149,15 @@ Y10 $\sim$ X10 & -0.1381 & 0.0000 & Sí & 0.0607 & Sí & 0.0291 \\
 \end{tabular}
 \end{table}
 
-Al aumentar la persistencia a $b=0.97$, la inferencia usual rechaza 5 de 10 veces. HAC vuelve a dejar solo 2 rechazos. Este resultado muestra que parte de la significancia aparente se explica por la autocorrelación, aunque todavía no se está en el caso extremo de raíz unitaria.
+Al aumentar la persistencia a $b=0.97$, la inferencia usual rechaza 5 de 10 veces. HAC vuelve a dejar solo 2 rechazos. En este caso las series siguen siendo estacionarias, pero la persistencia genera trayectorias largas que pueden parecer tendencias locales. Ese comportamiento distorsiona la inferencia usual y aumenta la frecuencia de falsos rechazos.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.80\textwidth]{sim_b_alto.png}
+\caption{Distribución de rechazos en simulaciones repetidas, $b=0.97$}
+\end{figure}
+
+La Figura 2 muestra que este no es un caso aislado. Cuando $b$ está cerca de uno, la distribución de rechazos con OLS se desplaza fuertemente hacia la derecha: muchas simulaciones terminan con tasas de rechazo muy superiores al 10\%. HAC reduce el problema, pero la dispersión sigue siendo alta y la tasa de rechazo todavía queda lejos de un comportamiento ideal. En términos prácticos, la alta persistencia vuelve mucho más riesgoso interpretar significancias como evidencia de relación predictiva.
 
 \begin{table}[H]
 \centering
@@ -194,14 +181,21 @@ Y10 $\sim$ X10 & -1.0607 & 0.0000 & Sí & 0.0000 & Sí & 0.7014 \\
 \end{tabular}
 \end{table}
 
+El tercer escenario corresponde a una caminata aleatoria porque, al fijar $b=1$ y $a=0$, el AR(1) queda como $Y_t=Y_{t-1}+\varepsilon_t$. Es el caso donde el problema se ve con mayor claridad. La inferencia usual rechaza en el 100\% de las regresiones y HAC todavía rechaza en el 80\%. Además, varios $R^2$ son altos. Esto es engañoso, porque las series fueron generadas de forma independiente.
+
 \begin{figure}[H]
-	\centering		
-	\includegraphics[width=0.9\textwidth]{Pregunta_iii_Random_Walk.png}		
-	\caption{Regresiones entre caminatas aleatorias independientes}
-	\label{fig:diagnostico_residuos}		
+\centering
+\includegraphics[width=0.94\textwidth]{Pregunta_iii_Random_Walk.png}
+\caption{Regresiones entre caminatas aleatorias independientes}
 \end{figure}
 
-El random walk es el caso donde el problema se ve con mayor claridad. La inferencia usual rechaza en el 100\% de las regresiones y HAC todavía rechaza en el 80\%. Además, varios $R^2$ son altos. Esto es engañoso, porque las series fueron generadas de forma independiente. La figura refuerza el punto: las trayectorias parecen moverse juntas o en direcciones opuestas, pero esa relación aparece por la persistencia de las series, no por un vínculo económico.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.80\textwidth]{sim_b1.png}
+\caption{Distribución de rechazos en simulaciones repetidas, $b=1$}
+\end{figure}
+
+La Figura 4 cierra el patrón. Con $b=1$, tanto OLS como HAC concentran gran parte de las simulaciones en tasas de rechazo muy altas. La diferencia es que HAC baja algo la frecuencia, pero no cambia la conclusión de fondo: al trabajar con caminatas aleatorias independientes, la regresión en niveles queda mal planteada y puede producir significancia casi por construcción. Por eso el resultado no debe interpretarse como predictibilidad, sino como evidencia de regresión espuria.
 
 \begin{table}[H]
 \centering
@@ -219,12 +213,12 @@ Random walk & 1.00 & 5\% & 100.0 & 80.0 & 0.2583 \\
 
 \subsection{Interpretación de la Simulaciones y Regresión Espuria}
 
-Si $k=0$ y se trabaja al 10\% de significancia, en condiciones estándar se esperaría rechazar cerca de 10\% de las veces. El ejercicio muestra que esa referencia pierde sentido cuando las series se vuelven muy persistentes. En particular, con caminatas aleatorias la inferencia tradicional deja de ser confiable, porque las distribuciones usuales de los estadísticos ya no son las que se están usando implícitamente en la prueba.
+Si $k=0$ y se trabaja al 10\% de significancia, en condiciones estándar se esperaría rechazar cerca de 10\% de las veces. Las tablas muestran el resultado de una corrida puntual, mientras que las figuras de simulación repetida permiten ver el patrón general. En ambos casos la conclusión es la misma: a medida que aumenta la persistencia, crece la probabilidad de encontrar significancia donde no existe relación real.
 
-La lección práctica es simple: HAC ayuda, pero no arregla una regresión mal planteada con series no estacionarias. Antes de estimar relaciones predictivas en finanzas, conviene revisar raíz unitaria y transformar las series cuando corresponde.
+La lección práctica es directa: HAC ayuda, pero no arregla una regresión mal planteada con series no estacionarias. Antes de estimar relaciones predictivas en finanzas, conviene revisar raíz unitaria y transformar las series cuando corresponde.
 
 \newpage
-\section{Commodity currencies}
+\section{Commodity Currencies}
 
 \subsection{Datos, transformaciones y estacionariedad}
 
@@ -233,23 +227,20 @@ La Parte 2 se trabajó con frecuencia mensual desde 1999M09. La base contiene ti
 Primero se revisaron niveles, logaritmos y retornos. En niveles y logaritmos, las series muestran alta persistencia. En retornos, la persistencia baja de forma importante y las series se ven más compatibles con estacionariedad.
 
 \begin{figure}[H]
-	\centering		
-	\includegraphics[width=0.9\textwidth]{grafico_1_Nivel_ACF_PACF_chile.png}		
-	\caption{Tipo de cambio chileno en nivel: serie, ACF y PACF}
-	\label{fig:diagnostico_residuos}		
+\centering
+\includegraphics[width=0.88\textwidth]{grafico_1_Nivel_ACF_PACF_chile.png}
+\caption{Tipo de cambio chileno en nivel: serie, ACF y PACF}
 \end{figure}
-
-
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.9\textwidth]{grafico_2_Log_ACF_PACF_chile.png}
+\includegraphics[width=0.88\textwidth]{grafico_2_Log_ACF_PACF_chile.png}
 \caption{Tipo de cambio chileno en logaritmo: serie, ACF y PACF}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.9\textwidth]{grafico_3_Retornos_ACF_PACF_r1_chile.png}
+\includegraphics[width=0.88\textwidth]{grafico_3_Retornos_ACF_PACF_r1_chile.png}
 \caption{Retorno logarítmico del tipo de cambio chileno: serie, ACF y PACF}
 \end{figure}
 
@@ -275,6 +266,14 @@ Aluminum & Nivel & -2.2837 & 0.1773 & No \\
 \end{table}
 
 Los ADF confirman la lectura visual: precios y tipos de cambio en nivel no rechazan raíz unitaria, mientras que los retornos sí lo hacen. Esto es consistente con trabajar los modelos predictivos en retornos.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\textwidth]{hist_retornos.png}
+\caption{Histogramas de retornos logarítmicos}
+\end{figure}
+
+En los histogramas se observan diferencias respecto de una normal perfecta en la mayoría de las series. En esta muestra, aluminum es la única serie donde no se rechaza normalidad al 5\%. En el resto aparecen desviaciones que son comunes en retornos financieros: shocks grandes, asimetrías o colas más pesadas. Por eso, los resultados basados en inferencia tradicional deben leerse con cautela y complementarse con errores robustos y evaluación fuera de muestra.
 
 \subsection{Modelo CRR dentro de muestra}
 
@@ -306,7 +305,7 @@ LMEX & Australia & 0.0716 & 0.3715 & No & -0.2041 & 0.1300 & No & 0.0091 \\
 
 La interpretación es acotada. No se observa que todos los tipos de cambio predigan todos los commodities. Más bien, la evidencia aparece en casos puntuales, especialmente aluminum.
 
-\subsection{Errores HAC y cambio en la inferencia}
+\subsection{Errores HAC y especificaciones Pincheira-Hardy}
 
 Al repetir el ejercicio con errores HAC, la conclusión principal se mantiene, aunque los p-values aumentan. Aluminum sigue siendo significativo tanto con Chile como con Australia, mientras que copper y LMEX no muestran evidencia robusta.
 
@@ -327,10 +326,6 @@ LMEX & Australia & 0.0716 & 0.5015 & No & -0.2041 & 0.2009 & No & 0.0091 \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-Este contraste es útil porque muestra que la significancia no debe depender solo de errores estándar usuales. Si una relación se mantiene con HAC, al menos es más defendible dentro de muestra.
-
-\subsection{Especificaciones Pincheira-Hardy}
 
 La especificación Pincheira-Hardy incorpora dos rezagos del tipo de cambio:
 
@@ -390,7 +385,7 @@ Copper & Chile & Rolling & Zero forecast & 0.0036 & 0.1498 & 0.0107 & Sí \\
 
 La diferencia entre in-sample y out-of-sample es una de las partes más importantes del ejercicio. Dentro de muestra se encuentran señales, pero fuera de muestra esas señales no dominan de manera estable. Esto puede deberse a inestabilidad de parámetros, sobreajuste o simplemente a que la señal predictiva es débil frente al ruido de los retornos financieros.
 
-\subsection{MDA y estrategia de trading}
+\subsection{MDA, trading y portafolio}
 
 La Mean Directional Accuracy evalúa si el modelo acierta la dirección del retorno. En los casos reportados, la MDA queda cerca del 50\% o por debajo. Por ejemplo, el modelo PH con copper-Chile obtiene 0.4597 en ventana recursiva y 0.4677 en ventana rodante. Ninguno supera significativamente el benchmark de suerte pura.
 
@@ -432,11 +427,7 @@ Copper & Australia & Recursive & PH dos rezagos & -0.0042 & -0.0505 & 0.3820 & N
 \end{tabular}
 \end{table}
 
-\subsection{Bonus 1: portafolio tipo Neely et al.}
-
-El bonus de portafolio se incluyó para revisar si la señal predictiva mejora una decisión de inversión. Se usó una tasa libre de riesgo anual de 3\%, costos de transacción y dos niveles de aversión al riesgo ($\gamma=3$ y $\gamma=5$).
-
-Los resultados no muestran una ventaja consistente. En varios casos el Sharpe es negativo y los excesos medios no son significativos. Para copper-Chile con PH dos rezagos y ventana recursiva, el retorno anualizado es 2.28\% con $\gamma=3$, pero el exceso medio no es significativo. Con $\gamma=5$, el retorno anualizado cae a 0.94\% y tampoco hay significancia.
+El bonus de portafolio se incluyó para revisar si la señal predictiva mejora una decisión de inversión. Se usó una tasa libre de riesgo anual de 3\%, costos de transacción y dos niveles de aversión al riesgo ($\gamma=3$ y $\gamma=5$). Los resultados no muestran una ventaja consistente: en varios casos el Sharpe es negativo y los excesos medios no son significativos.
 
 \begin{table}[H]
 \centering
@@ -455,8 +446,6 @@ Copper & Chile & Zero forecast & 3 & 0.0296 & 0.0000 & -- & 0.0296 & -- \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-La lectura práctica es que la señal predictiva no alcanza para construir una estrategia de portafolio claramente superior, sobre todo cuando se consideran volatilidad y costos.
 
 \subsection{Bonus 2: paradoja del MSPE}
 
@@ -480,7 +469,7 @@ Copper & Australia & Rolling & PH dos rezagos & 0.0043 & 0.0043 & 0.0135 & 0.653
 
 Esto sirve para no depender de una sola métrica. El MSPE castiga errores de magnitud, mientras que la correlación mide comovimiento. Un modelo puede seguir mejor la dirección general y aun así equivocarse más en escala. En este caso, la paradoja funciona más como advertencia metodológica que como evidencia fuerte a favor del modelo PH.
 
-\subsection{Conclusión de Commodity currencies}
+\subsection{Conclusión de Commodity Currencies}
 
 La evidencia es mixta. Dentro de muestra aparecen señales compatibles con la literatura de \textit{commodity currencies}, especialmente en aluminum y en algunas especificaciones con el peso chileno. Fuera de muestra, la señal no domina de manera estable a benchmarks simples. Además, MDA, trading y portafolio no entregan beneficios significativos. La conclusión más razonable es que la predictibilidad existe en algunos casos, pero es frágil y difícil de explotar de manera sistemática.
 
@@ -493,7 +482,7 @@ La serie GDP de Reino Unido muestra una tendencia clara en nivel. Su ACF cae len
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\textwidth]{grafico_1_GDP_ACF_PACF.png}
+\includegraphics[width=0.90\textwidth]{grafico_1_GDP_ACF_PACF.png}
 \caption{GDP en nivel: serie, ACF y PACF}
 \end{figure}
 
@@ -501,7 +490,7 @@ Al tomar la primera diferencia logarítmica, la serie cambia de comportamiento. 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\textwidth]{grafico_2_Direfencia_Log_ACF_PACF.png}
+\includegraphics[width=0.90\textwidth]{grafico_2_Direfencia_Log_ACF_PACF.png}
 \caption{Primera diferencia logarítmica del GDP: serie, ACF y PACF}
 \end{figure}
 
@@ -563,7 +552,7 @@ Después de seleccionar ARIMA(1,1,1), se revisaron los residuos. La ACF y PACF r
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{grafico_4_Dicgnostico_de_Residuos.png}
+\includegraphics[width=0.70\textwidth]{grafico_4_Dicgnostico_de_Residuos.png}
 \caption{Diagnóstico de residuos del modelo ARIMA(1,1,1)}
 \end{figure}
 
@@ -583,11 +572,31 @@ Rezago & LB Statistic & p-value \\
 
 Con esto, el modelo seleccionado cumple razonablemente con el diagnóstico Box-Jenkins dentro de muestra. La serie fue diferenciada para lograr estacionariedad, se estimaron candidatos, se eligió por criterios de información y se revisaron residuos.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.74\textwidth]{gdp_ajuste_crecimiento.png}
+\caption{Crecimiento observado y estimado por ARIMA(1,1,1)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.70\textwidth]{gdp_residuos_linea.png}
+\caption{Residuos de estimación del modelo ARIMA(1,1,1)}
+\end{figure}
+
 \subsection{Comentario sobre pronóstico}
 
 El ajuste dentro de muestra no debe confundirse con un ejercicio predictivo completo. Para proyectar GDP hacia adelante, el modelo tendría que evaluarse fuera de muestra o con un esquema de validación temporal. Además, la muestra termina en 1998, por lo que pronosticar hasta 2022-2030 exigiría asumir estabilidad de parámetros por un período demasiado largo. Ese supuesto no es inocente en una serie macroeconómica.
 
-\subsection{Conclusión de Metodología Box-Jenkins}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.70\textwidth]{gdp_log_obs_estimado.png}
+\caption{PIB Reino Unido en log observado y estimado por ARIMA(1,1,1)}
+\end{figure}
+
+El modelo tampoco incorpora información externa, como inflación, tasas de interés o cambios estructurales. Por eso, si el objetivo fuera pronosticar hacia adelante, habría que separar una ventana de evaluación, calcular métricas como RMSE o MAE y comparar contra benchmarks simples. Para el objetivo del examen, el modelo es defendible como ejercicio Box-Jenkins dentro de muestra; para usarlo como pronóstico real, faltaría esa validación adicional.
+
+\subsection{Conclusión de la Metodología Box-Jenkins}
 
 El GDP se comporta como una serie $I(1)$. Una vez tomada la primera diferencia logarítmica, el modelo ARIMA(1,1,1) captura adecuadamente la dependencia temporal observada. El modelo no garantiza buen pronóstico futuro por sí solo, pero sí es una especificación defendible para el análisis solicitado.
 
